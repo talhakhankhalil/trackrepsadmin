@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return // use DB facades
-gettype(\DB::connection('couchbase')
-    ->table('default')->where('name', 'Talha Khan Khalil')->get());
+    return view('welcome');
 });
+
+Route::resource('member','memberController');
