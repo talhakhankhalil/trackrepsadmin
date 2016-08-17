@@ -3,24 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use CouchbaseCluster;
+use CouchbaseN1qlQuery;
+use CouchbaseViewQuery;
 
 class Member extends Model
 {
-    //
-     public static $bucket = "";
    
     public function __construct(){
-        $cluster = new CouchbaseCluster("couchbase://127.0.0.1");
-        Member::$bucket = $cluster->openBucket("default");
+        
     }
     
    
 
-    protected $table = '';
-    protected $primaryKey = 'id';
-    public $timestamps = false;
-    public static $couchbase_bucket = 'default';
-    public static $couchbase_doc = 'doc1';
+    public static 
+    
     protected $fillable = [
             'id',
             'name',
@@ -72,7 +69,7 @@ class Member extends Model
         
     
         
-       return $val;
+//       return $val;
         
        // Member::$bucket->key("member::1")->upsert($value);
     }
@@ -80,16 +77,24 @@ class Member extends Model
 
 
     public static function all($columns = array()){
-        return \DB::connection('couchbase')->table(self::$couchbase_bucket)->get();
         
-//        DB::connection('couchbase')
-//    ->table('testing')->where('whereKey', 'value')->get();
+        set_time_limit(300);
+        $cluster = new CouchbaseCluster("http://168.235.91.84:8091");
+        $bucket = $cluster->openBucket("default");
+       // return var_dump($bucket->get("member::pk-1"));
+        
+       $query = CouchbaseViewQuery::from('mem', 'members');
+       $results = $bucket->query($query);
+       return  $results->rows;
     }
 
 
 
 
     public static function one($id){
-        return \DB::connection('couchbase')->table(self::$couchbase_bucket)->where('id',$id)->get();
-    }
+        set_time_limit(300);
+        $cluster = new CouchbaseCluster("http://168.235.91.84:8091");
+        $bucket = $cluster->openBucket("default");
+        return ($bucket->get("member::".$id));
+}
 }

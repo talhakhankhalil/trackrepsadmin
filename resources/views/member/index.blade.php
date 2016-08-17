@@ -1,5 +1,5 @@
-@extends('layout.admin')
 
+@extends('layout.admin')
 
 @section('content')
 
@@ -20,48 +20,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                       
+                                @foreach($memberdata as $member)
                                          <tr>
-                                            <td><img src="images/JavedNaseem.jpg" class="img-thumbnail" /> </td>
-                                            <td>Javed Nasim</td>
-                                            <td>PK-03 Peshawar-III</td>
-                                            <td><button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" style="padding-right:5px"></i>Edit</button></td>
+                                            <td><img src="http://trackreps.org/imgs/{{$member->value->ImageName}}" class="img-thumbnail" /> </td>
+                                            <td>{{$member->value->Name}}</td>
+                                            <td>{{$member->value->Constituency}}</td>
+                                            <td><a href="{{route('member.edit',$member->value->Id)}}"  class="btn btn-info"><i class="fa fa-pencil" style="padding-right:5px"></i>Edit</a></td>
                                             <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"><i class="fa fa-remove" style="padding-right:5px"></i>Delete</button></td>
                                             <td><a href="view-member.html"><button type="button" class="btn btn-success"><i class="fa fa-eye" style="padding-right:5px"></i>View</button></a></td>
                                         </tr>
-                                         <tr>
-                                            <td><img src="images/JavedNaseem.jpg" class="img-thumbnail" /> </td>
-                                            <td>Javed Nasim</td>
-                                            <td>PK-03 Peshawar-III</td>
-                                            <td><button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" style="padding-right:5px"></i>Edit</button></td>
-                                            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"><i class="fa fa-remove" style="padding-right:5px"></i>Delete</button></td>
-                                            <td><a href="view-member.html"><button type="button" class="btn btn-success"><i class="fa fa-eye" style="padding-right:5px"></i>View</button></a></td>
-                                        </tr>
-                                         <tr>
-                                            <td><img src="images/JavedNaseem.jpg" class="img-thumbnail" /> </td>
-                                            <td>Javed Nasim</td>
-                                            <td>PK-03 Peshawar-III</td>
-                                            <td><button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" style="padding-right:5px"></i>Edit</button></td>
-                                            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"><i class="fa fa-remove" style="padding-right:5px"></i>Delete</button></td>
-                                            <td><a href="view-member.html"><button type="button" class="btn btn-success"><i class="fa fa-eye" style="padding-right:5px"></i>View</button></a></td>
-                                        </tr>
-                                         <tr>
-                                            <td><img src="images/JavedNaseem.jpg" class="img-thumbnail" /> </td>
-                                            <td>Javed Nasim</td>
-                                            <td>PK-03 Peshawar-III</td>
-                                            <td><button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" style="padding-right:5px"></i>Edit</button></td>
-                                            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"><i class="fa fa-remove" style="padding-right:5px"></i>Delete</button></td>
-                                            <td><a href="view-member.html"><button type="button" class="btn btn-success"><i class="fa fa-eye" style="padding-right:5px"></i>View</button></a></td>
-                                        </tr>
-                                         <tr>
-                                            <td><img src="images/JavedNaseem.jpg" class="img-thumbnail" /> </td>
-                                            <td>Javed Nasim</td>
-                                            <td>PK-03 Peshawar-III</td>
-                                            <td><button type="button" class="btn btn-info"  data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil" style="padding-right:5px"></i>Edit</button></td>
-                                            <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalDelete"><i class="fa fa-remove" style="padding-right:5px"></i>Delete</button></td>
-                                            <td><a href="view-member.html"><button type="button" class="btn btn-success"><i class="fa fa-eye" style="padding-right:5px"></i>View</button></a></td>
-                                        </tr>
-                                        <tr>
+                                @endforeach         
+                                
                                     </tbody>
                                 </table>
                             </div>
@@ -71,6 +40,7 @@
                     
                     
                     
+<!--
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -203,6 +173,7 @@
                 </div>
             </div>
         </div>
+-->
 
         <!--        Modal Delete-->
 

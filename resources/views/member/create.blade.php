@@ -11,14 +11,11 @@
 
  <div class="row">
                         <div class="col-sm-12">
-                            <form method="POST" action="{{route('member.store')}}">
+                            <form method="POST" action="{{route('member.store')}}" role="form">
                                
                               {!! csrf_field() !!}
                                
-                               <div class="form-group">
-                                    <label>ID</label>
-                                    <input name="id" type="text" class="form-control" placeholder="Enter Name">
-                                </div>
+                              
                                
                                
                                 <div class="form-group">
