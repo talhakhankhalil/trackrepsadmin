@@ -162,12 +162,14 @@
                         <li>
                             <a href="{{route('member.index')}}"><i class="fa fa-fw fa-edit"></i> View Members Detail</a>
                         </li>
+                        
+                         <li>
+                            <a href="{{route('committe.index')}}"><i class="fa fa-fw fa-edit"></i> View Committee Detail</a>
+                        </li> 
                         <li>
-                            <a href="committee.html"><i class="fa fa-fw fa-table"></i> Add Committee</a>
+                            <a href="{{route('committe.create')}}"><i class="fa fa-fw fa-edit"></i> Create new Committe</a>
                         </li>
-                        <li>
-                            <a href="committee-detail.html"><i class="fa fa-fw fa-desktop"></i> Committee Detail</a>
-                        </li>
+                       
                         <li>
                             <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                         </li>

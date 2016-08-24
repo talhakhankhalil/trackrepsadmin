@@ -13,30 +13,26 @@ class Member extends Model
     public function __construct(){
         
     }
-    
-   
 
-    public static 
     
-    protected $fillable = [
-            'id',
-            'name',
-            'father_name',
-            'constituency' ,
-            'seat_type',
-            'profession' ,
-            'deprtment' ,
-            'cabinet_post',
-            'party',
-            'date_of_birth',
-            'religon' ,
-            'marital_status',
-            'gender' ,
-            'education',
-            'present_contact',
-            'permanent_contact',
-            'member_image'
-    ];
+//    protected $fillable = [
+//            'name',
+//            'father_name'
+////            'constituency' ,
+////            'seat_type',
+////            'profession' ,
+////            'deprtment' ,
+////            'cabinet_post',
+////            'party',
+////            'date_of_birth',
+////            'religon' ,
+////            'marital_status',
+////            'gender' ,
+////            'education',
+////            'present_contact',
+////            'permanent_contact',
+////            'member_image'
+//    ];
 
 
 

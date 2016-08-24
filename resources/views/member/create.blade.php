@@ -1,8 +1,3 @@
-
-
-
-
-
 @extends('layout.admin')
 
 
@@ -11,7 +6,7 @@
 
  <div class="row">
                         <div class="col-sm-12">
-                            <form method="POST" action="{{route('member.store')}}" role="form">
+                            <form method="POST" action="{{url('member')}}" role="form" enctype="multipart/form-data">
                                
                               {!! csrf_field() !!}
                                
@@ -42,12 +37,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Profession</label>
-                                    <select name="profession" class="form-control">
-                                        <option>Politician</option>
-                                        <option>a</option>
-                                        <option>b</option>
-                                        <option>c</option>
-                                    </select>
+                                    <input name="profession" type="text" class="form-control" placeholder="Enter Name">
+                                   
                                 </div>
                                 <div class="form-group">
                                     <label>Department</label>
@@ -84,7 +75,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Date Of Birth</label>
-                                    <input name="date_of_birth" type="text" class="form-control">
+                                    <input name="date_of_birth" type="date" class="form-control">
                                 </div>
                                  <div class="form-group">
                                     <label>Religon</label>
