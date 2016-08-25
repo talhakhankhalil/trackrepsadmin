@@ -36,12 +36,12 @@ class memberController extends Controller
 
         $data =  \DB::connection('couchbase')
             ->table('default')->get();
-        //        $query = CouchbaseViewQuery::from('mem', 'members');
-        //        $memberdata = $this->bucket->query($query)->rows;
-        
-        //        return dd($data->rows);
+//                $query = CouchbaseViewQuery::from('mem', 'members');
+//                $memberdata = $this->bucket->query($query)->rows;
+                $memberdata = $data->rows;
+//                return var_dump($memberdata);
           
-           $memberdata = $data->rows;
+          
         
         if ( count($memberdata) > 0){
               return view('member.index' , compact('memberdata'));

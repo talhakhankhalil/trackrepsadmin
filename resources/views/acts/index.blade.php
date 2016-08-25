@@ -12,8 +12,8 @@
                                 <table class="table table-bordered table-hover table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Committee Name</th>
-                                            <th>Type</th>
+                                            <th>Act Title</th>
+                                            <th>Act ID</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                             <th>View</th>
@@ -21,12 +21,12 @@
                                     </thead>
                                     <tbody>
                                        
-                                    @foreach($committedata as $single_committe)
+                                    @foreach($actsdata as $act)
                                        
                                         <tr>
-                                            <td>{{$single_committe->value->Name}}</td>
-                                            <td>{{$single_committe->value->CommitteeType}}</td>
-                                            <td><a href="{{route('committe.edit', $single_committe->value->Id)}}"  class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a></td>
+                                            <td>{{$act->value->title}}</td>
+                                            <td>{{$act->value->id}}</td>
+                                            <td><a href="{{route('acts.edit', $act->value->id)}}"  class="btn btn-info"><i class="fa fa-pencil"></i> Edit</a></td>
                                             
                                             
                                             
@@ -35,7 +35,7 @@
                                                 
                                                 
                                               
-                                            <form method="POST" action="{{ url('committe',$single_committe->value->Id) }}">
+                                            <form method="POST" action="{{ url('acts',$act->value->id) }}">
         
                {{ csrf_field() }}
 
@@ -55,7 +55,7 @@
                                             
                                                               
                                                                                 
-                                                                                                                    <td><a href="{{url('committe',$single_committe->value->Id)}}" class="btn btn-success"><i class="fa fa-eye"></i>View</a></td>
+                                                                                                                    <td><a href="{{url('acts',$act->value->id)}}" class="btn btn-success"><i class="fa fa-eye"></i>View</a></td>
                                         </tr>
                                     @endforeach   
 

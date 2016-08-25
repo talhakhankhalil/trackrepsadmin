@@ -169,6 +169,14 @@
                         <li>
                             <a href="{{route('committe.create')}}"><i class="fa fa-fw fa-edit"></i> Create new Committe</a>
                         </li>
+                        
+                          <li>
+                            <a href="{{route('acts.create')}}"><i class="fa fa-fw fa-edit"></i> Add Act</a>
+                        </li>
+                        
+                          <li>
+                            <a href="{{route('acts.index')}}"><i class="fa fa-fw fa-edit"></i> View acts details</a>
+                        </li>
                        
                         <li>
                             <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>

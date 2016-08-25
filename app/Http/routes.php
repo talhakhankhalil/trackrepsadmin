@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::resource('member','memberController');
 Route::resource('committe','committeController');
+Route::resource('acts','actsController');
+
+

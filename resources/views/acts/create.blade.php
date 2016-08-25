@@ -7,67 +7,59 @@
  <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">
-                              Add Committee
+                              Add Acts
                             </h1>
                         
                         </div>
                     </div>
                     <!-- /.row -->
-  <form method="POST" action="{{url('committe')}}">
+  <form method="POST" action="{{url('acts')}}">
                    
                      {!! csrf_field() !!}
                    
                     <div class="row">
                         <div class="col-sm-12">
-                            <label>Committee Name</label>
-                            <input type="text" class="form-control" name="Name"/>
+                            <label>Date of Governer Assent</label>
+                            <input type="date" class="form-control" name="date_of_governer_assent"/>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-12">
-                        <label>Comittee Type</label>
-                            <select name="CommitteeType" class="form-control">
-                               <option>Legislative Committee</option>
-                                <option>Select Committee</option>
-                                <option>PAC</option>
-                                <option>Standing Committee</option>
-                                <option>Steering Committee</option>
-                                <option>Special Committee</option>
-                            </select>
-
+                        <label>Title</label>
+                          <input type="text" class="form-control" name="title"/>  
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label>Committee Chairman</label>
-                                 <input type="text" class="form-control" name="Chairman"/>
+                                <label>ID</label>
+                                 <input type="text" class="form-control" name="id"/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label>Committee Members</label>
-                                <input type="text" class="form-control" name="Member"/>
+                                <label>Act Number</label>
+                                <input type="text" class="form-control" name="act_number"/>
                             </div>
                         </div>
                     </div>
                      <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label>ID</label>
-                                <input type="text" class="form-control" name="Id"/>
+                                <label>Date of Passing</label>
+                                <input type="date" class="form-control" name="date_of_passing"/>
                             </div>
                         </div>
                     </div>
-                      <div class="row">
+                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label>Upload PDF</label>
-                                <input type="file" class="form-control" name="get_pdf"/>
+                                <label>Subject</label>
+                                <input type="text" class="form-control" name="subject"/>
                             </div>
                         </div>
                     </div>
