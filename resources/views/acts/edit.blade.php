@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <!-- /.row -->
-  <form method="POST" action="{{url('acts' , $edit_act[0]->default->id)}}">
+  <form method="POST" action="{{url('acts' , $edit_act->Id)}}">
                    
                      {!! csrf_field() !!}
                      
@@ -22,14 +22,14 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <label>Date of Governer Assent</label>
-                            <input type="date" class="form-control" name="date_of_governer_assent" value="{{$edit_act[0]->default->date_of_governer_assent}}"/>
+                            <input type="date" class="form-control" name="DateofGovernersAssent" value="{{$edit_act->DateofGovernersAssent}}"/>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-12">
                         <label>Title</label>
-                          <input type="text" class="form-control" name="title" value="{{$edit_act[0]->default->title}}"/>  
+                          <input type="text" class="form-control" name="Title" value="{{$edit_act->Title}}"/>  
                         </div>
                     </div>
                     <br>
@@ -37,7 +37,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>ID</label>
-                                 <input type="text" class="form-control" name="id" value="{{$edit_act[0]->default->id}}"/>
+                                 <input type="text" class="form-control" name="Id" value="{{$edit_act->Id}}"/>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Act Number</label>
-                                <input type="text" class="form-control" name="act_number" value="{{$edit_act[0]->default->act_number}}"/>
+                                <input type="text" class="form-control" name="ActNo" value="{{$edit_act->ActNo}}"/>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Date of Passing</label>
-                                <input type="date" class="form-control" name="date_of_passing" value="{{$edit_act[0]->default->date_of_passing}}"/>
+                                <input type="date" class="form-control" name="DateofPassing" value="{{$edit_act->DateofPassing}}"/>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Subject</label>
-                                <input type="text" class="form-control" name="subject" value="{{$edit_act[0]->default->subject}}"/>
+                                <input type="text" class="form-control" name="Subject" value="{{$edit_act->Subject}}"/>
                             </div>
                         </div>
                     </div>

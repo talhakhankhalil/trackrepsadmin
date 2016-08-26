@@ -15,125 +15,70 @@ use DB;
 class memberController extends Controller
 {
 
-    public $cluster;
+    
+    public $con;
     public $bucket;
     public $member_image;
 
     public function __construct(){
-        $this->cluster = new CouchbaseCluster("http://localhost:8091");
-        $this->bucket = $this->cluster->openBucket("default");
+        $this->con = \DB::connection('couchbase');
+        $this->bucket = $this->con->openBucket("default");
     }
 
+    public function index(){
+        $query = CouchbaseViewQuery::from('mem', 'members');
+        $memberdata = $this->bucket->query($query)->rows;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-
-        $data =  \DB::connection('couchbase')
-            ->table('default')->get();
-//                $query = CouchbaseViewQuery::from('mem', 'members');
-//                $memberdata = $this->bucket->query($query)->rows;
-                $memberdata = $data->rows;
-//                return var_dump($memberdata);
-          
-          
-        
         if ( count($memberdata) > 0){
-              return view('member.index' , compact('memberdata'));
-          }else {
-              return "Errror :: Data not found in the database";
-          }
+            return view('member.index' , compact('memberdata'));
+        }else {
+            return "Errror :: Data not found in the database";
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+
+    public function create(){
         return view('member.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
 
-        $name = $request->input('name');
-        $father_name = $request->input('father_name');
-        $constituency = $request->input('constituency');
-        $seat_type = $request->input('seat_type');
-        $profession = $request->input('profession');
-        $department = $request->input('department');
-        $cabinet_post = $request->input('cabinet_post');
-        $party = $request->input('party');
-        $date_of_birth = $request->input('date_of_birth');
-        $religon = $request->input('religon');
-        $marital_status = $request->input('marital_status');
-        $gender = $request->input('gender');
-        $education = $request->input('education');
-        $present_contact = $request->input('present_contact');
-        $permanent_contact = $request->input('permanent_contact');
+    public function store(Request $request){
+        $name = $request->input('Name');
+        $father_name = $request->input('FatherName');
+        $constituency = $request->input('Constituency');
+        $seat_type = $request->input('SeatType');
+        $profession = $request->input('Profession');
+        $department = $request->input('Department');
+        $cabinet_post = $request->input('CabinetPost');
+        $party = $request->input('Party');
+        $date_of_birth = $request->input('DateOfBirth');
+        $religon = $request->input('Religion');
+        $marital_status = $request->input('MartialStatus');
+        $gender = $request->input('Gender');
+        $education = $request->input('Education');
+        $present_contact = $request->input('PresentContact');
+        $permanent_contact = $request->input('PermenentContact');
+        $id = $request->input('Id');
 
+        if ($file =  $request->file('ImageName')){
 
-      
-        
-        if ($file =  $request->file('member_image')){
-
-        $this->member_image = $file->getClientOriginalName();
+            $this->member_image = $file->getClientOriginalName();
             $file->move('images',$this->member_image);    
         }
-        
-         $data =  \DB::connection('couchbase')
-            ->table('default')->get();
-          
-           $memberdata = $data->rows;
-        
-        
-        foreach($memberdata as $member){
-            
-            if ($constituency == $member->default->constituency){
-                die('The key already exist in the DB');
-            }
-            
-        }
 
-
-        DB::connection('couchbase')->openBucket('default')->insert("mpa::".$constituency , ['name'=>$name,'father_name' => $father_name,'constituency' => $constituency, 'seat_type' => $seat_type , 'profession' => $profession , 'department' => $department , 'cabinet_post' => $cabinet_post, 'party' => $party, 'date_of_birth' => $date_of_birth, 'religon' => $religon,'marital_status' => $marital_status,'gender' => $gender,'education' => $education,'present_contact' => $present_contact,'permanent_contact' => $permanent_contact,'member_image' => $this->member_image]);
+        $this->bucket->insert("member::".$id , ['Name'=>$name,'FatherName' => $father_name,'Constituency' => $constituency, 'SeatType' => $seat_type , 'Profession' => $profession , 'Department' => $department , 'CabinetPost' => $cabinet_post, 'Party' => $party, 'DateOfBirth' => $date_of_birth, 'Religion' => $religon,'MartialStatus' => $marital_status,'Gender' => $gender,'Education' => $education,'PresentContact' => $present_contact,'PermenentContact' => $permanent_contact,'ImageName' => $this->member_image,'Id'=>$id]);
 
         return redirect('member/create');
 
-
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
-        
-        $data =    \DB::connection('couchbase')
-            ->table('default')->where('constituency', '=', $id)->get();
-        $single_member = $data->rows;
-//        return dd($single_member);
+         
+        $single_member = $this->bucket->get("member::".$id)->value;
         return view('member.show', compact('single_member'));
+        
+//        return dd($single_member);
 
     }
 
@@ -146,12 +91,10 @@ class memberController extends Controller
     public function edit($id)
     {
 
-        $data =    \DB::connection('couchbase')
-            ->table('default')->where('constituency', '=', $id)->get();
-        $edit_member = $data->rows;
-//        return var_dump($edit_member);
+        $edit_member = $this->bucket->get("member::".$id)->value;
         return view('member.edit' , compact('edit_member'));
 
+//          var_dump($edit_member);
     }
 
     /**
@@ -164,42 +107,42 @@ class memberController extends Controller
     public function update(Request $request, $id)
     {
 
-        
-        $name = $request->input('name');
-        $father_name = $request->input('father_name');
-        $constituency = $request->input('constituency');
-        $seat_type = $request->input('seat_type');
-        $profession = $request->input('profession');
-        $department = $request->input('department');
-        $cabinet_post = $request->input('cabinet_post');
-        $party = $request->input('party');
-        $date_of_birth = $request->input('date_of_birth');
-        $religon = $request->input('religon');
-        $marital_status = $request->input('marital_status');
-        $gender = $request->input('gender');
-        $education = $request->input('education');
-        $present_contact = $request->input('present_contact');
-        $permanent_contact = $request->input('permanent_contact');
-//        $file =  $request->input('member_image');
-//        $member_image = $file->getClientOriginalName();
+
+        $name = $request->input('Name');
+        $father_name = $request->input('FatherName');
+        $constituency = $request->input('Constituency');
+        $seat_type = $request->input('SeatType');
+        $profession = $request->input('Profession');
+        $department = $request->input('Department');
+        $cabinet_post = $request->input('CabinetPost');
+        $party = $request->input('Party');
+        $date_of_birth = $request->input('DateOfBirth');
+        $religon = $request->input('Religion');
+        $marital_status = $request->input('MartialStatus');
+        $gender = $request->input('Gender');
+        $education = $request->input('Education');
+        $present_contact = $request->input('PresentContact');
+        $permanent_contact = $request->input('PermenentContact');
+        $id = $request->input('Id');
+        //        $file =  $request->input('member_image');
+        //        $member_image = $file->getClientOriginalName();
 
 
-        if ($file =  $request->file('member_image')){
+        if ($file =  $request->file('ImageName')){
 
-            $this->member_image = $file->getClientOriginalName();
-            $file->move('images',$this->member_image);    
+            $member_image = $file->getClientOriginalName();
+            $file->move('http://trackreps.org/imgs',$member_image);    
         }
 
-        
-        
-        $con = DB::connection('couchbase');
-        $bucket = $con->openBucket('default');
-        
-        $bucket->replace("mpa::".$id , ['name' => $name, 'father_name' => $father_name, 'constituency' => $constituency,'seat_type' => $seat_type ,'profession' => $profession,'department' =>$department,'cabinet_post' => $cabinet_post,'party' => $party,'date_of_birth' =>$date_of_birth,'religon' => $religon,'marital_status' => $marital_status,'gender' =>  $gender,'education' => $education,'present_contact' => $present_contact , 'permanent_contact' => $permanent_contact , 'member_image' => $this->member_image]);
+
+
+
+
+        $this->bucket->replace("member::".$id , ['Name' => $name, 'FatherName' => $father_name, 'Constituency' => $constituency,'SeatType' => $seat_type ,'Profession' => $profession,'Department' =>$department,'CabinetPost' => $cabinet_post,'Party' => $party,'DateOfBirth' =>$date_of_birth,'Religion' => $religon,'MartialStatus' => $marital_status,'Gender' =>  $gender,'Education' => $education,'PresentContact' => $present_contact , 'PermenentContact' => $permanent_contact , 'ImageName' => $member_image, 'Id'=>$id]);
 
         return redirect('member');
-        
-       
+
+
 
     }
 
@@ -212,9 +155,7 @@ class memberController extends Controller
     public function destroy($id)
     {
         //
-         $con = DB::connection('couchbase');
-        $bucket = $con->openBucket('default');
-         $bucket->remove("mpa::".$id);
+        $this->bucket->remove("member::".$id);
         return  redirect('member');
     }
 }

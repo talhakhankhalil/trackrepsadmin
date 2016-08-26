@@ -10,32 +10,32 @@
                                 <tr>
                                     <td>Date of Governer Assent</td>
                                     <td>:</td>
-                                    <td>{{$act[0]->default->date_of_governer_assent}}</td>
+                                    <td>{{$act->DateofGovernersAssent}}</td>
                                 </tr>
                                 <tr>
                                     <td>Title</td>
                                     <td>:</td>
-                                    <td>{{$act[0]->default->title}}</td>
+                                    <td>{{$act->Title}}</td>
                                 </tr>
                                 <tr>
                                     <td>ID</td>
                                     <td>:</td>
-                                    <td>{{$act[0]->default->id}}</td>
+                                    <td>{{$act->Id}}</td>
                                 </tr>
                                 <tr>
                                     <td>Act Number</td>
                                     <td>:</td>
-                                    <td>{{$act[0]->default->act_number}}</td>
+                                    <td>{{$act->ActNo}}</td>
                                 </tr>
                                  <tr>
                                     <td>Date of Passing</td>
                                     <td>:</td>
-                                    <td>{{$act[0]->default->date_of_passing}}</td>
+                                    <td>{{$act->DateofPassing}}</td>
                                 </tr>
                                  <tr>
                                     <td>Subject</td>
                                     <td>:</td>
-                                    <td>{{$act[0]->default->subject}}</td>
+                                    <td>{{$act->Subject}}</td>
                                 </tr>
                             </table>
 

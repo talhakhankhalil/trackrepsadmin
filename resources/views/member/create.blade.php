@@ -15,19 +15,19 @@
                                
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input name="name" type="text" class="form-control" placeholder="Enter Name">
+                                    <input name="Name" type="text" class="form-control" placeholder="Enter Name">
                                 </div>
                                 <div class="form-group">
                                     <label>Father Name</label>
-                                    <input name="father_name" type="text" class="form-control" placeholder="Enter Father Name">
+                                    <input name="FatherName" type="text" class="form-control" placeholder="Enter Father Name">
                                 </div>
                                 <div class="form-group">
                                     <label>Constituency</label>
-                                    <input name="constituency" type="text" class="form-control">
+                                    <input name="Constituency" type="text" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Seat Type</label>
-                                    <select name="seat_type" class="form-control">
+                                    <select name="SeatType" class="form-control">
                                         <option>Select the Seat</option>
                                         <option>General Seat</option>
                                         <option>Seat 2</option>
@@ -37,12 +37,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Profession</label>
-                                    <input name="profession" type="text" class="form-control" placeholder="Enter Name">
+                                    <input name="Profession" type="text" class="form-control" placeholder="Enter Name">
                                    
                                 </div>
                                 <div class="form-group">
+                                    <label>ID</label>
+                                    <input name="Id" type="text" class="form-control">  
+                                </div>
+                                
+                                <div class="form-group">
                                     <label>Department</label>
-                                    <select name="department" class="form-control">
+                                    <select name="Department" class="form-control">
                                         <option>a</option>
                                         <option>b</option>
                                         <option>c</option>
@@ -51,7 +56,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Cabinet Post</label>
-                                    <select name="cabinet_post" class="form-control">
+                                    <select name="CabinetPost" class="form-control">
                                         <option>a</option>
                                         <option>b</option>
                                         <option>c</option>
@@ -60,7 +65,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Party</label>
-                                    <select name="party" class="form-control">
+                                    <select name="Party" class="form-control">
                                         <option>All Pakistan Muslim League</option>
                                         <option>Awami National Party</option>
                                         <option>Independents(Government Coaliyion)</option>
@@ -75,11 +80,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Date Of Birth</label>
-                                    <input name="date_of_birth" type="date" class="form-control">
+                                    <input name="DateOfBirth" type="date" class="form-control">
                                 </div>
                                  <div class="form-group">
                                     <label>Religon</label>
-                                    <select name="religon" class="form-control">
+                                    <select name="Religion" class="form-control">
                                         <option>Muslim</option>
                                         <option>Non muslim</option>
                                     </select>
@@ -87,21 +92,21 @@
                                
                                  <div class="form-group">
                                     <label>Marital Status</label>
-                                    <select name="marital_status" class="form-control">
+                                    <select name="MartialStatus" class="form-control">
                                         <option>single</option>
                                         <option>married</option>
                                     </select>
                                 </div>
                                  <div class="form-group">
                                     <label>Gender</label>
-                                    <select name="gender" class="form-control">
+                                    <select name="Gender" class="form-control">
                                         <option>male</option>
                                         <option>female</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Education</label>
-                                    <select name="education" class="form-control">
+                                    <select name="Education" class="form-control">
                                         <option>BA</option>
                                         <option>BCS</option>
                                         <option>MA</option>
@@ -110,15 +115,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Present Contact</label>
-                                    <textarea name="present_contact" class="form-control" rows="3"></textarea>
+                                    <textarea name="PresentContact" class="form-control" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Permanent Contact</label>
-                                    <textarea name="permanent_contact" class="form-control" rows="3"></textarea>
+                                    <textarea name="PermenentContact" class="form-control" rows="3"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Upload Image</label>
-                                    <input name="member_image" type="file" class="form-control" />
+                                    <input name="ImageName" type="file" class="form-control" />
                                 </div>
                                
                                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -65,13 +65,13 @@ return [
             'strict' => false,
             'engine' => null,
         ],
-        
+
         'couchbase' => [
-    'driver' => 'couchbase',
-    'host' => 'couchbase://127.0.0.1',
-    'user' => 'Admin', // optional administrator
-    'password' => 'desire2get', // optional administrator
-],
+            'driver' => 'couchbase',
+            'host' => '168.235.91.84:8091',
+            'user' => 'Admin', // optional administrator
+            'password' => 'Fireeye123', // optional administrator
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',

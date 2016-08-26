@@ -13,38 +13,25 @@ use CouchbaseViewQuery;
 
 class actsController extends Controller
 {
-    
-    
-    public $cluster;
+
+
+    public $con;
     public $bucket;
 
-
     public function __construct(){
-        $this->cluster = new CouchbaseCluster("http://localhost:8091");
-        $this->bucket = $this->cluster->openBucket("default");
+        $this->con = \DB::connection('couchbase');
+        $this->bucket = $this->con->openBucket("default");
     }
-
     
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
-        
-         $query = CouchbaseViewQuery::from('act', 'acts');
+        $query = CouchbaseViewQuery::from('act', 'acts');
         $actsdata = $this->bucket->query($query)->rows;
-
-
         if ( count($actsdata) > 0){
             return view('acts.index' , compact('actsdata'));
         }else {
             return "Errror :: Data not found in the database";
         }
-        
     }
 
     /**
@@ -67,20 +54,27 @@ class actsController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $date_of_governer_assent = $request->input('date_of_governer_assent');
-        $title = $request->input('title');
-        $id = $request->input('id');
-        $act_number = $request->input('act_number');
-        $date_of_passing = $request->input('date_of_passing');
-        $subject  = $request->input('subject');
+
+        $date_of_governer_assent = $request->input('DateofGovernersAssent');
+        $title = $request->input('Title');
+        $id = $request->input('Id');
+        $act_number = $request->input('ActNo');
+        $date_of_passing = $request->input('Dateofassing');
+        $subject  = $request->input('Subject');
+
+        if ($file =  $request->file('get_pdf')){
+
+            $get_pdf_act = $file->getClientOriginalName();
+            $file->move('actspdf',$get_pdf_act);    
+        }
 
 
 
-        DB::connection('couchbase')->openBucket('default')->insert("act::".$id , ['date_of_governer_assent'=>$date_of_governer_assent,'title' => $title ,'id' => $id, 'act_number' =>  $act_number, 'date_of_passing' =>  $date_of_passing, 'subject' =>   $subject]);
+
+        $this->bucket->insert("act::".$id , ['DateofGovernersAssent'=>$date_of_governer_assent,'Title' => $title ,'Id' => $id, 'ActNo' =>  $act_number, 'DateofPpassing' =>  $date_of_passing, 'Subject' =>   $subject,'get_pdf' => $get_pdf_act]);
 
         return redirect('acts/create');
-        
+
     }
 
     /**
@@ -91,12 +85,9 @@ class actsController extends Controller
      */
     public function show($id)
     {
-        //
-          $data =    \DB::connection('couchbase')
-            ->table('default')->where('id', '=', $id)->get();
-        $act = $data->rows;
-//        return dd($single_committe);
-        return view('acts.show', compact('act'));
+       
+       $act = $this->bucket->get("acts::" . $id)->value;
+        return view("acts.show", compact('act'));
 
     }
 
@@ -109,40 +100,27 @@ class actsController extends Controller
     public function edit($id)
     {
         //
-         $data =    \DB::connection('couchbase')
-            ->table('default')->where('id', '=', $id)->get();
-        $edit_act = $data->rows;
+         $edit_act = $this->bucket->get("acts::" . $id)->value;
+         return view("acts.edit", compact('edit_act'));
 
-        return view('acts.edit' , compact('edit_act'));
-       
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
-        
-        $date_of_governer_assent = $request->input('date_of_governer_assent');
-        $title = $request->input('title');
-        $id = $request->input('id');
-        $act_number = $request->input('act_number');
-        $date_of_passing = $request->input('date_of_passing');
-        $subject  = $request->input('subject');
-        
-        
-        $con = DB::connection('couchbase');
-        $bucket = $con->openBucket('default');
-        
-         
-       $bucket->replace("act::".$id , ['date_of_governer_assent'=>$date_of_governer_assent,'title' => $title ,'id' => $id, 'act_number' =>  $act_number, 'date_of_passing' =>  $date_of_passing, 'subject' =>   $subject]);
+
+        $date_of_governer_assent = $request->input('DateofGovernersAssent');
+        $title = $request->input('Title');
+        $id = $request->input('Id');
+        $act_number = $request->input('ActNo');
+        $date_of_passing = $request->input('DateofPassing');
+        $subject  = $request->input('Subject');
+
+
+
+
+        $this->bucket->replace("act::".$id , ['DateofGovernerAssent'=>$date_of_governer_assent,'Title' => $title ,'Id' => $id, 'ActNo' =>  $act_number, 'DateofPassing' =>  $date_of_passing, 'Subject' =>   $subject]);
         return redirect('acts');
-        
+
     }
 
     /**
@@ -154,9 +132,8 @@ class actsController extends Controller
     public function destroy($id)
     {
         //
-         $con = DB::connection('couchbase');
-          $bucket = $con->openBucket('default');
-          $bucket->remove("act::".$id);
-          return  redirect('acts');
+        
+        $this->bucket->remove("act::".$id);
+        return  redirect('acts');
     }
 }

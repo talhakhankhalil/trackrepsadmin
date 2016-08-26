@@ -10,74 +10,98 @@
                                 <tr>
                                     <td>Name</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->name}}</td>
+                                    <td>{{$single_member->Name}}</td>
                                 </tr>
                                 <tr>
                                     <td>Father Name</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->father_name}}</td>
+                                    @if(!empty($single_member->FatherName))
+                                    <td>{{$single_member->FatherName}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Constituency</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->constituency}}</td>
+                                    @if(!empty($single_member->Constituency))
+                                    <td>{{$single_member->Constituency}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Seat Type</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->seat_type}}</td>
+                                    @if(!empty($single_member->SeatType))
+                                    <td>{{$single_member->SeatType}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Profession</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->profession}}</td>
+                                    @if(!empty($single_member->Profession) )
+                                    <td>{{$single_member->Profession}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Department</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->department}}</td>
+                                    @if(!empty($single_member->Department))
+                                    <td>{{$single_member->Department}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Cabinet Post</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->cabinet_post}}</td>
+                                    @if(!empty($single_member->CabinetPost))
+                                    <td>{{$single_member->CabinetPost}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Party</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->party}}</td>
+                                    @if(!empty($single_member->Party))
+                                    <td>{{$single_member->Party}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Date Of Birth</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->date_of_birth}}</td>
+                                    @if(!empty($single_member->DateOfBirth))
+                                    <td>{{$single_member->DateOfBirth}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Religion</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->religon}}</td>
+                                    @if(!empty($single_member->Religion))
+                                    <td>{{$single_member->Religion}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Martial Status</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->marital_status}}</td>
+                                    @if(!empty($single_member->MartialStatus))
+                                    <td>{{$single_member->MartialStatus}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Education</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->education}}</td>
+                                    @if(!empty($single_member->Education))
+                                    <td>{{$single_member->Education}}</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>Permanent Contact</td>
                                     <td>:</td>
-                                    <td>{{$single_member[0]->default->permanent_contact}}</td>
+                                    @if(!empty($single_member->PermanentContact))
+                                    <td>{{$single_member->PermanentContact}}</td>
+                                    @endif
                                 </tr>
                             </table>
 
                         </div>
                         <div class="col-sm-4">
                             
-                            <img src="{{asset('images/').'/'.$single_member[0]->default->member_image}}" width="200">
+                            <img  src="http://trackreps.org/imgs/{{$single_member->ImageName}}" width="200">
                         </div>
   
 

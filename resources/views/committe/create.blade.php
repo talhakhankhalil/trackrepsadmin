@@ -63,14 +63,7 @@
                             </div>
                         </div>
                     </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label>Upload PDF</label>
-                                <input type="file" class="form-control" name="get_pdf"/>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <br>
                     <div class="row">
                         <div class="col-sm-12">
