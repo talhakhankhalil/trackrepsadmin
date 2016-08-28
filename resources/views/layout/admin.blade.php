@@ -177,20 +177,11 @@
                           <li>
                             <a href="{{route('acts.index')}}"><i class="fa fa-fw fa-edit"></i> View acts details</a>
                         </li>
-                       
                         <li>
-                            <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                            <a href="{{route('bills.index')}}"><i class="fa fa-fw fa-edit"></i> View bills details</a>
                         </li>
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="#">Dropdown Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dropdown Item</a>
-                                </li>
-                            </ul>
+                            <a href="{{route('bills.create')}}"><i class="fa fa-fw fa-edit"></i> Create Bill</a>
                         </li>
                         <li>
                             <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
