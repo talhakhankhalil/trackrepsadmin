@@ -62,11 +62,11 @@ class memberController extends Controller
 
         if ($file =  $request->file('ImageName')){
 
-            $this->member_image = $file->getClientOriginalName();
-            $file->move('images',$this->member_image);    
+            $member_image = $file->getClientOriginalName();
+            $file->move('images',$member_image);    
         }
 
-        $this->bucket->insert("member::".$id , ['Name'=>$name,'FatherName' => $father_name,'Constituency' => $constituency, 'SeatType' => $seat_type , 'Profession' => $profession , 'Department' => $department , 'CabinetPost' => $cabinet_post, 'Party' => $party, 'DateOfBirth' => $date_of_birth, 'Religion' => $religon,'MartialStatus' => $marital_status,'Gender' => $gender,'Education' => $education,'PresentContact' => $present_contact,'PermenentContact' => $permanent_contact,'ImageName' => $this->member_image,'Id'=>$id]);
+        $this->bucket->insert("member::".$id , ['Name'=>$name,'FatherName' => $father_name,'Constituency' => $constituency, 'SeatType' => $seat_type , 'Profession' => $profession , 'Department' => $department , 'CabinetPost' => $cabinet_post, 'Party' => $party, 'DateOfBirth' => $date_of_birth, 'Religion' => $religon,'MartialStatus' => $marital_status,'Gender' => $gender,'Education' => $education,'PresentContact' => $present_contact,'PermenentContact' => $permanent_contact,'ImageName' => $member_image,'Id'=>$id]);
 
         return redirect('member/create');
 
